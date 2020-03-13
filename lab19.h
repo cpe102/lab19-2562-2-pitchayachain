@@ -50,7 +50,7 @@ void Unit::showStatus(){
 		cout << name << "\n"; 
 		cout << "HP: " << hp << "/" << hpmax << "\tATK: "<< atk << "\t\tDEF: "<< def;		
 		cout << "\n---------------------------------------\n";
-	}	
+	}
 	else if(type == "Monster"){
 		cout << "\t\t\t\t---------------------------------------\n"; 
 		cout << "\t\t\t\tMonster" << "\n"; 
@@ -59,17 +59,40 @@ void Unit::showStatus(){
 	}
 }
 
+
 void Unit::newTurn(){
 	guard_on = false;
 }
+bool Unit::isDead(){
+	if(hp <= 0) return true;
+	else return false;
+}
+void Unit::guard(){
+	guard_on = true;
+}
 
-//Write Function Member attack(), beAttacked(), heal(), guard() and isDead() here
-//
-//
-//
-//
-//
-//
+int Unit::heal(){
+	int heal = rand()%21+10;
+	if (heal+hp > hpmax)
+	{
+		heal = hpmax-hp;
+		hp = hp + heal;
+	}else
+		hp = hp + heal;
+	return heal;
+}
+
+int Unit::beAttacked(int oppatk){
+int dmg = oppatk-def;
+if(guard_on) dmg = dmg/3;
+hp = hp-dmg;
+return dmg;
+}
+
+int Unit::attack(Unit &target){
+return target.beAttacked(atk);
+}
+
 
 void drawScene(char p_action,int p,char m_action,int m){
 	cout << "                                                       \n";

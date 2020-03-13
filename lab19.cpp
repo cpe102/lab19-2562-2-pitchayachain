@@ -18,7 +18,7 @@ int main(){
 		cout << "\n[Turn " << turn_count << "] Enter your action: ";
 		cin >> player_action;
 		player_action = toupper(player_action);
-		if(player_action == 'E') break; 
+		if(player_action == 'E') break;
 		
 		int temp = rand()%3;
 		if(temp <= 1) monster_action = 'A';
